@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//run the mongoDB database connection code
+require('./config/database.js');
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -20,7 +23,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+//app.use('/users', usersRouter);
+//app.use('/todos', require('./routes/todos.js'));
+
 
 
 // catch 404 and forward to error handler
