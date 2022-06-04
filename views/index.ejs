@@ -7,19 +7,26 @@
   <body>
     <h1>To Do List</h1>
     <p>
-      <!-- < % if (todosArray.length = 0) { %>
-        <p>There are no TO-DOs on the list</p>
-      < % } % >   -->
+      <% if (todosArray.length < 1 ) { %>
+        <h4> There are no TO-DOs on this list yet!</h4>
+      <% } else { %>
+        <p>
+          <% todosArray.forEach(function(t){ %>
+                <li><%= t.todo %> - Not Done</li>
+          <% }); %>
+        </p>
+        <% } %> 
     </p>
   <ul>
-    
+
   </ul>
   <hr>
-  <form action="/todos" method="POST"></form>
-  <label>
-    <input type="text" name="todo">
-  </label>
-  <a href="/"><button>ADD TO DO</button></a>
+  <form action="/todos/new" method="POST">
+    <label>
+      <input type="text" name="todo">
+    </label>
+    <button>ADD TO DO</button>
+  </form>  
 </body>
 </html>
 

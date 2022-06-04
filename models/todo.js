@@ -1,15 +1,9 @@
-const mongoose = require('mongoose');
-// optional shortcut to the mongoose.Schema class
-const Schema = mongoose.Schema;
+let todosArray = [
+    
+  ];
 
-const todoSchema = new Schema({
-    todo: String,
-    done: false
-});
-
-let todoModel = mongoose.model('Todo', todoSchema);
-
-module.exports = {
-    todoModel
+  module.exports = {
+    todosArray: todosArray
 };
 
+  

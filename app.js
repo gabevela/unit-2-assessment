@@ -3,19 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 //run the mongoDB database connection code
-require('./config/database.js');
-
+//but not using this line of code below becasue is am saving my "todos list" in memory, not in a database for the assessment 
+//require('./config/database.js');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
 var app = express();
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -23,16 +19,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-//app.use('/users', usersRouter);
+app.use('/users', usersRouter);
 //app.use('/todos', require('./routes/todos.js'));
-
-
-
+app.use('/todos', require('./routes/todos.js'));
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
-
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
